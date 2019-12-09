@@ -1,0 +1,25 @@
+{
+  "name": "robotic-hoover",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "unit": "jest spec/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marvinhm/robotic-hoover.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marvinhm/robotic-hoover/issues"
+  },
+  "homepage": "https://github.com/marvinhm/robotic-hoover#readme",
+  "dependencies": {
+    "common-js": "0.3.8",
+    "jest": "24.9.0"
+  },
+  "devDependencies": {}
+}
