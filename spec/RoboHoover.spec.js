@@ -78,22 +78,8 @@ describe("RoboHoover", () => {
     });
   });
 
-  // describe("drive", () => {
-  //   it("navigate thought the grid with hoover given location", () => {
-  //     let x = 2;
-  //     let y = 0;
-  //     hooverSession.gridBuilder(2, 2);
-  //     hooverSession.hooverOrigin(x, y);
-
-  //     let directions = "N";
-
-  //     hooverSession.drive(directions);
-  //     expect(hooverSession.showGrid()).toEqual([[false, false, false], [false, false, false], [false, "hooverPresent", false]]);
-  //   })
-  // })
-
   describe("compass", () => {
-    it("given a direction North, change hoover location (2,0) to (2,1)", () => {
+    it("given a direction North and current location of (2,0), the next laction of the hoover should be (2, 1)", () => {
       let x = 2;
       let y = 0;
       hooverSession.gridBuilder(2, 2);
@@ -102,10 +88,10 @@ describe("RoboHoover", () => {
       let directions = "N";
 
       hooverSession.compass(directions, hooverSession.hooverOriginCoords);
-      expect(hooverSession.hooverOriginCoords).toEqual([2, 1]);
+      expect(hooverSession.futureCoords).toEqual([2, 1]);
     });
 
-    it("given a direction South, change hoover location (1,2) to (1,1)", () => {
+    it("given a direction South and current location of (1,2), the next laction of the hoover should be (1,1)", () => {
       let x = 1;
       let y = 2;
       hooverSession.gridBuilder(2, 2);
@@ -114,10 +100,10 @@ describe("RoboHoover", () => {
       let directions = "S";
 
       hooverSession.compass(directions, hooverSession.hooverOriginCoords);
-      expect(hooverSession.hooverOriginCoords).toEqual([1, 1]);
+      expect(hooverSession.futureCoords).toEqual([1, 1]);
     });
 
-    it("given a direction East, change hoover location (0,0) to (1,0)", () => {
+    it("given a direction East and current location of (0,0), the next laction of the hoover should be (1,0)", () => {
       let x = 0;
       let y = 0;
       hooverSession.gridBuilder(3, 3);
@@ -126,10 +112,10 @@ describe("RoboHoover", () => {
       let directions = "E";
 
       hooverSession.compass(directions, hooverSession.hooverOriginCoords);
-      expect(hooverSession.hooverOriginCoords).toEqual([1, 0]);
+      expect(hooverSession.futureCoords).toEqual([1, 0]);
     });
 
-    it("given a direction West, change hoover location (1,0) to (0,0)", () => {
+    it("given a direction West and current location of (1,0), the next laction of the hoover should be (0,0)", () => {
       let x = 1;
       let y = 0;
       hooverSession.gridBuilder(3, 3);
@@ -138,8 +124,24 @@ describe("RoboHoover", () => {
       let directions = "W";
 
       hooverSession.compass(directions, hooverSession.hooverOriginCoords);
-      expect(hooverSession.hooverOriginCoords).toEqual([0, 0]);
+      expect(hooverSession.futureCoords).toEqual([0, 0]);
     });
-  })
+  });
+
+  describe("drive", () => {
+    it("navigate thought the grid with hoover given location", () => {
+      let x = 2;
+      let y = 0;
+      hooverSession.gridBuilder(2, 2);
+      hooverSession.hooverOrigin(x, y);
+
+      let directions = "N";
+
+      hooverSession.compass(directions, hooverSession.hooverOriginCoords);
+
+      hooverSession.drive(directions);
+      expect(hooverSession.showGrid()).toEqual([[false, false, false], [false, false, false], [false, "hooverPresent", false]]);
+    })
+  });
 
 })

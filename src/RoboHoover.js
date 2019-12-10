@@ -3,6 +3,8 @@
     this.inputInfo;
     this.newArray;
     this.hooverOriginCoords;
+    this.pastCoords;
+    this.futureCoords;
 
     this.showGrid = () => {
       return this.newArray;
@@ -45,28 +47,34 @@
     };
 
     this.compass = (direction, origin) => {
+      this.pastCoords = origin;
+     
+      this.futureCoords;
       if(direction == "N") {
-        origin[1]++;
+        this.futureCoords = [origin[0], origin[1]+1];
       } else if(direction == "S") {
-        origin[1]--;
+        this.futureCoords = [origin[0], origin[1]-1];
       } else if(direction == "E") {
-        origin[0]++;
+        this.futureCoords = [origin[0]+1, origin[1]];
       } else if(direction == "W") {
-        origin[0]--;
+        this.futureCoords = [origin[0]-1, origin[1]];
       } else {
         console.log("Error");
       }
     }
 
-    // this.drive = (directions) => {
-    //   let directionsArray = directions.split('');
 
-    //   directionsArray.forEach((direction) => {
-    //     if(direction == "N") {
-          
-    //     }
-    //   })
-    // };
+
+    
+
+    this.drive = (directions) => {
+      let directionsArray = directions.split('');
+
+      directionsArray.forEach((direction) => {
+        this.compass(direction);
+
+      })
+    };
   
   };
 
