@@ -31,7 +31,7 @@
     }
 
     this.dirtPlotter = (dirtArray) => {
-      this.newArray
+      this.newArray;
       dirtArray.forEach((coords) => {
         this.newArray[coords[0]][coords[1]] = true;
       })

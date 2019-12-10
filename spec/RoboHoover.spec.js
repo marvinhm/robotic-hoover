@@ -22,6 +22,11 @@ describe("RoboHoover", () => {
       let grid1 = hooverSession.gridBuilder(2, 2);
       expect(grid1.length).toEqual(3);
     });
+
+    it("given the dimensions provided, returns array to represent it ie. (5,5) => gives an array of 6 arrays", () => {
+      let grid1 = hooverSession.gridBuilder(5, 5);
+      expect(grid1.length).toEqual(6);
+    });
   });
 
   describe("dirtPlotter", () => {
@@ -31,6 +36,16 @@ describe("RoboHoover", () => {
       hooverSession.dirtPlotter(locationArray);
 
       expect(hooverSession.showGrid()).toEqual([[false, true, false], [false, false, false], [false, false, false]]);
+    });
+
+
+    it("With 5x5 grid, given the dirt locations, we should return a grid of points that match", () => {
+      let hooverSession = new RobotHoover();
+      hooverSession.gridBuilder(5, 5);
+      const locationArray = [[0, 0], [1, 1], [2, 2], [5, 5]];
+      hooverSession.dirtPlotter(locationArray);
+
+      expect(hooverSession.showGrid()).toEqual([[true, false, false, false, false, false], [false, true, false, false, false, false], [false, false, true, false, false, false], [false, false, false, false, false, false], [false, false, false, false, false, false], [false, false, false, false, false, true]]);
     });
   });
   
