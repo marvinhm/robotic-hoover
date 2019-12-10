@@ -192,20 +192,20 @@ describe("RoboHoover", () => {
       expect(hooverSession.cleanCount).toEqual(1);
     });
 
-    // it("should have a count of zero after one hoover movement", () => {
-    //   let x = 0;
-    //   let y = 0;
-    //   hooverSession.gridBuilder(2, 2);
-    //   hooverSession.hooverOrigin(x, y);
+    it("should have a count of zero after one hoover movement", () => {
+      let x = 0;
+      let y = 0;
+      hooverSession.gridBuilder(2, 2);
+      hooverSession.hooverOrigin(x, y);
 
-    //   const locationArray = [[0, 1]];
-    //   hooverSession.dirtPlotter(locationArray);
+      const locationArray = [[0, 2]];
+      hooverSession.dirtPlotter(locationArray);
 
-    //   hooverSession.drive("N");
+      hooverSession.drive("N");
 
 
-    //   expect(hooverSession.cleanCount).toEqual(1);
-    // });
+      expect(hooverSession.cleanCount).toEqual(0);
+    });
   });
 
 
