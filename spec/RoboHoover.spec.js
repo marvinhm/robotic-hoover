@@ -118,15 +118,27 @@ describe("RoboHoover", () => {
     });
 
     it("given a direction East, change hoover location (0,0) to (1,0)", () => {
-      let x = 1;
-      let y = 2;
+      let x = 0;
+      let y = 0;
       hooverSession.gridBuilder(3, 3);
       hooverSession.hooverOrigin(x, y);
 
       let directions = "E";
 
       hooverSession.compass(directions, hooverSession.hooverOriginCoords);
-      expect(hooverSession.hooverOriginCoords).toEqual([1, 1]);
+      expect(hooverSession.hooverOriginCoords).toEqual([1, 0]);
+    });
+
+    it("given a direction West, change hoover location (1,0) to (0,0)", () => {
+      let x = 1;
+      let y = 0;
+      hooverSession.gridBuilder(3, 3);
+      hooverSession.hooverOrigin(x, y);
+
+      let directions = "W";
+
+      hooverSession.compass(directions, hooverSession.hooverOriginCoords);
+      expect(hooverSession.hooverOriginCoords).toEqual([0, 0]);
     });
   })
 

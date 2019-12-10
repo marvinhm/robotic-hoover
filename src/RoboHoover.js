@@ -51,7 +51,11 @@
         origin[1]--;
       } else if(direction == "E") {
         origin[0]++;
-      } 
+      } else if(direction == "W") {
+        origin[0]--;
+      } else {
+        console.log("Error");
+      }
     }
 
     // this.drive = (directions) => {
