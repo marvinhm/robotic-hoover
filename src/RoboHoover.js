@@ -2,6 +2,8 @@
   function RoboHoover(input) {
     this.inputInfo;
     this.newArray;
+    this.hooverOriginCoords;
+
     this.showGrid = () => {
       return this.newArray;
     }
@@ -39,7 +41,24 @@
 
     this.hooverOrigin = (xcoord, ycoord) => {
       this.newArray[xcoord][ycoord] = "hooverPresent";
+      return this.hooverOriginCoords = [xcoord, ycoord];
+    };
+
+    this.compass = (direction, origin) => {
+      if(direction == "N") {
+        origin[1]++;
+      }
     }
+
+    // this.drive = (directions) => {
+    //   let directionsArray = directions.split('');
+
+    //   directionsArray.forEach((direction) => {
+    //     if(direction == "N") {
+          
+    //     }
+    //   })
+    // };
   
   };
 

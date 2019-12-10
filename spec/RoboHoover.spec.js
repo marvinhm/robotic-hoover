@@ -50,7 +50,16 @@ describe("RoboHoover", () => {
   });
   
   describe("hooverOrigin", () => {
-    it("should plot the hoover on the grid given the location", () => {
+    it("should plot the hoover on the grid given the location 0,0", () => {
+      let x = 0;
+      let y = 0;
+      hooverSession.gridBuilder(1, 1);
+      hooverSession.hooverOrigin(x, y);
+
+      expect(hooverSession.showGrid()).toEqual([["hooverPresent", false], [false, false]]);
+    });
+
+    it("should plot the hoover on the grid given the location 2,0", () => {
       let x = 2;
       let y = 0;
       hooverSession.gridBuilder(3, 3);
@@ -58,6 +67,47 @@ describe("RoboHoover", () => {
 
       expect(hooverSession.showGrid()).toEqual([[false, false, false, false], [false, false, false, false], ["hooverPresent", false, false, false], [false, false, false, false]]);
     });
+
+    it("should plot the hoover on the grid given the location 3,3", () => {
+      let x = 3;
+      let y = 3;
+      hooverSession.gridBuilder(5, 5);
+      hooverSession.hooverOrigin(x, y);
+
+      expect(hooverSession.showGrid()).toEqual([[false, false, false, false, false, false], [false, false, false, false, false, false], [false, false, false, false, false, false], [false, false, false, "hooverPresent", false, false], [false, false, false, false, false, false], [false, false, false, false, false, false]]);
+    });
   });
+
+  // describe("drive", () => {
+  //   it("navigate thought the grid with hoover given location", () => {
+  //     let x = 2;
+  //     let y = 0;
+  //     hooverSession.gridBuilder(2, 2);
+  //     hooverSession.hooverOrigin(x, y);
+
+  //     let directions = "N";
+
+  //     hooverSession.drive(directions);
+  //     expect(hooverSession.showGrid()).toEqual([[false, false, false], [false, false, false], [false, "hooverPresent", false]]);
+  //   })
+  // })
+
+  describe("compass", () => {
+    it("given a direction North, change hoover location (2,0) to (2,1)", () => {
+      let x = 2;
+      let y = 0;
+      hooverSession.gridBuilder(2, 2);
+      hooverSession.hooverOrigin(x, y);
+
+      let directions = "N";
+
+      hooverSession.compass(directions, hooverSession.hooverOriginCoords);
+      expect(hooverSession.hooverOriginCoords).toEqual([2, 1]);
+    });
+
+    
+
+    
+  })
 
 })
