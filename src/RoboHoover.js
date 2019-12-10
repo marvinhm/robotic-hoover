@@ -49,6 +49,8 @@
         origin[1]++;
       } else if(direction == "S") {
         origin[1]--;
+      } else if(direction == "E") {
+        origin[0]++;
       } 
     }
 

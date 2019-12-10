@@ -117,7 +117,17 @@ describe("RoboHoover", () => {
       expect(hooverSession.hooverOriginCoords).toEqual([1, 1]);
     });
 
-    
+    it("given a direction East, change hoover location (0,0) to (1,0)", () => {
+      let x = 1;
+      let y = 2;
+      hooverSession.gridBuilder(3, 3);
+      hooverSession.hooverOrigin(x, y);
+
+      let directions = "E";
+
+      hooverSession.compass(directions, hooverSession.hooverOriginCoords);
+      expect(hooverSession.hooverOriginCoords).toEqual([1, 1]);
+    });
   })
 
 })
