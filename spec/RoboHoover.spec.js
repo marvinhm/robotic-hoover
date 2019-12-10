@@ -1,4 +1,4 @@
-const RobotHoover = require('../src/RoboHoover');
+const RobotHoover = require('../src/RoboHoover').RoboHoover;
 
 describe("RoboHoover", () => {
   let hooverSession;
@@ -22,7 +22,16 @@ describe("RoboHoover", () => {
       let grid1 = hooverSession.gridBuilder(2, 2);
       expect(grid1.length).toEqual(3);
     });
+  });
 
+  describe("dirtPlotter", () => {
+    it("With 2x2 grid, given location [0, 0], we should return a grid of points [[true, false, false], [false, false, false], [false, false, false]]", () => {
+      hooverSession.gridBuilder(2, 2);
+      const locationArray = [[0, 1]];
+      hooverSession.dirtPlotter(locationArray);
+
+      expect(hooverSession.showGrid()).toEqual([[false, true, false], [false, false, false], [false, false, false]]);
+    });
   });
   
 
