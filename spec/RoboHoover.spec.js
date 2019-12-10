@@ -130,7 +130,7 @@ describe("RoboHoover", () => {
 
   describe("drive", () => {
     describe("update past and future values", () => {
-      it("given North and origin (0,0), hoover should leave it's previous location clean (false)", () => {
+      it("given North and origin (0,0), hoover should leave it's previous location clean (false) and move", () => {
         let x = 0;
         let y = 0;
         hooverSession.gridBuilder(2, 2);
@@ -140,7 +140,40 @@ describe("RoboHoover", () => {
 
         expect(hooverSession.showGrid()).toEqual([[false, "hooverPresent", false], [false, false, false], [false, false, false]]);
       });
-    })
+
+      it("given South and origin (2,2), hoover should leave it's previous location clean (false) and move", () => {
+        let x = 2;
+        let y = 2;
+        hooverSession.gridBuilder(2, 2);
+        hooverSession.hooverOrigin(x, y);
+
+        hooverSession.drive("S");
+
+        expect(hooverSession.showGrid()).toEqual([[false, false, false], [false, false, false], [false, "hooverPresent", false]]);
+      });
+
+      it("given Eeast and origin (0,0), hoover should leave it's previous location clean (false) and move", () => {
+        let x = 0;
+        let y = 0;
+        hooverSession.gridBuilder(2, 2);
+        hooverSession.hooverOrigin(x, y);
+
+        hooverSession.drive("E");
+
+        expect(hooverSession.showGrid()).toEqual([[false, false, false], ["hooverPresent", false, false], [false, false, false]]);
+      });
+
+      it("given West and origin (2,2), hoover should leave it's previous location clean (false) and move", () => {
+        let x = 2;
+        let y = 2;
+        hooverSession.gridBuilder(2, 2);
+        hooverSession.hooverOrigin(x, y);
+
+        hooverSession.drive("W");
+
+        expect(hooverSession.showGrid()).toEqual([[false, false, false], [false, false, "hooverPresent"], [false, false, false]]);
+      });
+    });
   });
 
 })
