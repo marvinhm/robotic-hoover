@@ -176,4 +176,37 @@ describe("RoboHoover", () => {
     });
   });
 
+  describe("cleanCount", () => {
+    it("should have a count of one after one hoover movement", () => {
+      let x = 0;
+      let y = 0;
+      hooverSession.gridBuilder(2, 2);
+      hooverSession.hooverOrigin(x, y);
+
+      const locationArray = [[0, 1]];
+      hooverSession.dirtPlotter(locationArray);
+
+      hooverSession.drive("N");
+
+
+      expect(hooverSession.cleanCount).toEqual(1);
+    });
+
+    // it("should have a count of zero after one hoover movement", () => {
+    //   let x = 0;
+    //   let y = 0;
+    //   hooverSession.gridBuilder(2, 2);
+    //   hooverSession.hooverOrigin(x, y);
+
+    //   const locationArray = [[0, 1]];
+    //   hooverSession.dirtPlotter(locationArray);
+
+    //   hooverSession.drive("N");
+
+
+    //   expect(hooverSession.cleanCount).toEqual(1);
+    // });
+  });
+
+
 })

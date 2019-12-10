@@ -6,6 +6,7 @@
     this.pastCoords;
     this.futureCoords;
     this.hooverPresence = "hooverPresent";
+    this.cleanCount = 0;
 
     this.showGrid = () => {
       return this.newArray;
@@ -67,8 +68,13 @@
     
 
     this.drive = (directions) => {
+      let cleanCount = 0;
       this.compass(directions, this.hooverOriginCoords)
       this.newArray[this.pastCoords[0]][this.pastCoords[1]] = false;
+      if(this.newArray[this.futureCoords[0]][this.futureCoords[1]] == true) {
+        this.cleanCount = this.cleanCount + 1;
+        
+      }
       this.newArray[this.futureCoords[0]][this.futureCoords[1]] = this.hooverPresence;
     };
   
