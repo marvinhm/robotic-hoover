@@ -5,6 +5,7 @@
     this.hooverOriginCoords;
     this.pastCoords;
     this.futureCoords;
+    this.currentCoords;
     this.hooverPresence = "hooverPresent";
     this.cleanCount = 0;
 
@@ -45,7 +46,9 @@
 
     this.hooverOrigin = (xcoord, ycoord) => {
       this.newArray[xcoord][ycoord] = this.hooverPresence;
-      return this.hooverOriginCoords = [xcoord, ycoord];
+      this.hooverOriginCoords = [xcoord, ycoord];
+      this.currentCoords = this.hooverOriginCoords;
+      return this.hooverOriginCoords;
     };
 
     this.compass = (direction, origin) => {
@@ -61,6 +64,7 @@
       } else {
         console.log("Error");
       }
+      this.currentCoords = this.futureCoords;
     }
 
 
@@ -69,13 +73,17 @@
 
     this.drive = (directions) => {
       let cleanCount = 0;
-      this.compass(directions, this.hooverOriginCoords)
-      this.newArray[this.pastCoords[0]][this.pastCoords[1]] = false;
-      if(this.newArray[this.futureCoords[0]][this.futureCoords[1]] == true) {
-        this.cleanCount = this.cleanCount + 1;
-        
-      }
-      this.newArray[this.futureCoords[0]][this.futureCoords[1]] = this.hooverPresence;
+      directions.split('').forEach((direction) => {
+        console.log(this.currentCoords);
+        this.compass(direction, this.currentCoords);
+        this.newArray[this.pastCoords[0]][this.pastCoords[1]] = false;
+        // console.log("Next position: ", this.newArray[this.futureCoords[0]][this.futureCoords[1]]);
+        if(this.newArray[this.futureCoords[0]][this.futureCoords[1]] == true) {
+          this.cleanCount = this.cleanCount + 1;
+          
+        }
+        this.newArray[this.futureCoords[0]][this.futureCoords[1]] = this.hooverPresence;
+      });
     };
   
   };

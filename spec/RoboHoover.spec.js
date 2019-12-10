@@ -206,6 +206,23 @@ describe("RoboHoover", () => {
 
       expect(hooverSession.cleanCount).toEqual(0);
     });
+
+    it("should have a count of two after one hoover movement", () => {
+      let x = 0;
+      let y = 0;
+      hooverSession.gridBuilder(2, 2);
+      hooverSession.hooverOrigin(x, y);
+
+      const locationArray = [[0, 1], [0, 2]];
+      hooverSession.dirtPlotter(locationArray);
+      
+      hooverSession.drive("NN");
+
+
+
+      expect(hooverSession.cleanCount).toEqual(2);
+    });
+
   });
 
 
