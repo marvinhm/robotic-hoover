@@ -12,8 +12,24 @@
     this.showGrid = () => {
       return this.newArray;
     }
-    this.hoove = () => {
-      return [];
+    this.hoove = (input) => {
+      let xDimension  = input[0][0];
+      let yDimension  = input[0][1];
+      let initialXPosition  = input[1][0];
+      let initialYPosition  = input[1][1];
+      let dirtPatchArray = [];
+      let drivingInstuctions = input[(input.length-1)].join();
+
+      for(let i=2; i<input.length-1; i++) {
+        dirtPatchArray.push(input[i]);
+      }
+
+      this.gridBuilder(xDimension, yDimension);
+      this.hooverOrigin(initialXPosition, initialYPosition);
+      this.dirtPlotter(dirtPatchArray);
+      this.drive(drivingInstuctions);
+      console.log(this.showGrid());
+      return [this.currentCoords, [this.cleanCount]];
     }
     this.getInput = () => {
       let myData = fetch("../input.csv")
@@ -72,12 +88,9 @@
     
 
     this.drive = (directions) => {
-      let cleanCount = 0;
       directions.split('').forEach((direction) => {
-        console.log(this.currentCoords);
         this.compass(direction, this.currentCoords);
         this.newArray[this.pastCoords[0]][this.pastCoords[1]] = false;
-        // console.log("Next position: ", this.newArray[this.futureCoords[0]][this.futureCoords[1]]);
         if(this.newArray[this.futureCoords[0]][this.futureCoords[1]] == true) {
           this.cleanCount = this.cleanCount + 1;
           

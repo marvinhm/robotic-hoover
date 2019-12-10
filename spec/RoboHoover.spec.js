@@ -7,8 +7,9 @@ describe("RoboHoover", () => {
   });
   describe("hoove", () => {
     it("hoove returns array if given an array", () => {
-      let testInput = ["test"];
-      expect(hooverSession.hoove(testInput)).toBeInstanceOf(Array);
+
+      let testInput = [[5,5], [1,2], [1,0], [2,2], [2,3], ["NNESEESWNWW"]];
+      expect(hooverSession.hoove(testInput)).toEqual([[1,3], [1]]);
     });
   });
 
@@ -207,7 +208,7 @@ describe("RoboHoover", () => {
       expect(hooverSession.cleanCount).toEqual(0);
     });
 
-    it("should have a count of two after one hoover movement", () => {
+    it("should have a count of two after two hoover movement", () => {
       let x = 0;
       let y = 0;
       hooverSession.gridBuilder(2, 2);
@@ -223,6 +224,71 @@ describe("RoboHoover", () => {
       expect(hooverSession.cleanCount).toEqual(2);
     });
 
+    it("should have a count of three after three hoover movement", () => {
+      let x = 0;
+      let y = 0;
+      hooverSession.gridBuilder(2, 2);
+      hooverSession.hooverOrigin(x, y);
+
+      const locationArray = [[0, 1], [0, 2], [1, 2]];
+      hooverSession.dirtPlotter(locationArray);
+      
+      hooverSession.drive("NNE");
+
+
+
+      expect(hooverSession.cleanCount).toEqual(3);
+    });
+
+    it("should have a count of four after four hoover movement", () => {
+      let x = 0;
+      let y = 0;
+      hooverSession.gridBuilder(2, 2);
+      hooverSession.hooverOrigin(x, y);
+
+      const locationArray = [[0, 1], [0, 2], [1, 2], [1, 1]];
+      hooverSession.dirtPlotter(locationArray);
+      
+      hooverSession.drive("NNES");
+
+
+
+      expect(hooverSession.cleanCount).toEqual(4);
+    });
+
+  });
+
+  describe("Final Position", () => {
+    it("Return last position after the last dirt location", () => {
+      let x = 0;
+      let y = 0;
+      hooverSession.gridBuilder(2, 2);
+      hooverSession.hooverOrigin(x, y);
+
+      const locationArray = [[0, 1], [0, 2], [1, 2], [1, 1]];
+      hooverSession.dirtPlotter(locationArray);
+      
+      hooverSession.drive("NNES");
+
+      expect(hooverSession.currentCoords).toEqual([1,1]);
+    });
+  });
+
+
+  describe("Final Position", () => {
+    it("Return last position after the last dirt location", () => {
+      let x = 0;
+      let y = 0;
+      hooverSession.gridBuilder(5, 5);
+      hooverSession.hooverOrigin(x, y);
+
+      const locationArray = [[0, 1], [0, 2], [1, 2], [1, 1], [5,5]];
+      hooverSession.dirtPlotter(locationArray);
+      
+      hooverSession.drive("NNES");
+
+      expect(hooverSession.currentCoords).toEqual([1,1]);
+    });
   });
 
 
