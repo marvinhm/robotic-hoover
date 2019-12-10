@@ -129,18 +129,17 @@ describe("RoboHoover", () => {
   });
 
   describe("drive", () => {
-    it("navigate thought the grid with hoover given location", () => {
-      let x = 2;
-      let y = 0;
-      hooverSession.gridBuilder(2, 2);
-      hooverSession.hooverOrigin(x, y);
+    describe("update past and future values", () => {
+      it("given North and origin (0,0), hoover should leave it's previous location clean (false)", () => {
+        let x = 0;
+        let y = 0;
+        hooverSession.gridBuilder(2, 2);
+        hooverSession.hooverOrigin(x, y);
 
-      let directions = "N";
+        hooverSession.drive("N");
 
-      hooverSession.compass(directions, hooverSession.hooverOriginCoords);
-
-      hooverSession.drive(directions);
-      expect(hooverSession.showGrid()).toEqual([[false, false, false], [false, false, false], [false, "hooverPresent", false]]);
+        expect(hooverSession.showGrid()).toEqual([[false, "hooverPresent", false], [false, false, false], [false, false, false]]);
+      });
     })
   });
 

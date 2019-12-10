@@ -5,6 +5,7 @@
     this.hooverOriginCoords;
     this.pastCoords;
     this.futureCoords;
+    this.hooverPresence = "hooverPresent";
 
     this.showGrid = () => {
       return this.newArray;
@@ -42,14 +43,12 @@
     };
 
     this.hooverOrigin = (xcoord, ycoord) => {
-      this.newArray[xcoord][ycoord] = "hooverPresent";
+      this.newArray[xcoord][ycoord] = this.hooverPresence;
       return this.hooverOriginCoords = [xcoord, ycoord];
     };
 
     this.compass = (direction, origin) => {
       this.pastCoords = origin;
-     
-      this.futureCoords;
       if(direction == "N") {
         this.futureCoords = [origin[0], origin[1]+1];
       } else if(direction == "S") {
@@ -68,12 +67,9 @@
     
 
     this.drive = (directions) => {
-      let directionsArray = directions.split('');
-
-      directionsArray.forEach((direction) => {
-        this.compass(direction);
-
-      })
+      this.compass(directions, this.hooverOriginCoords)
+      this.newArray[this.pastCoords[0]][this.pastCoords[1]] = false;
+      this.newArray[this.futureCoords[0]][this.futureCoords[1]] = this.hooverPresence;
     };
   
   };
