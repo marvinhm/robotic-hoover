@@ -49,5 +49,15 @@ describe("RoboHoover", () => {
     });
   });
   
+  describe("hooverOrigin", () => {
+    it("should plot the hoover on the grid given the location", () => {
+      let x = 2;
+      let y = 0;
+      hooverSession.gridBuilder(3, 3);
+      hooverSession.hooverOrigin(x, y);
+
+      expect(hooverSession.showGrid()).toEqual([[false, false, false, false], [false, false, false, false], ["hooverPresent", false, false, false], [false, false, false, false]]);
+    });
+  });
 
 })

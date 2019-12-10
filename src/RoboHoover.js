@@ -35,6 +35,10 @@
       dirtArray.forEach((coords) => {
         this.newArray[coords[0]][coords[1]] = true;
       })
+    };
+
+    this.hooverOrigin = (xcoord, ycoord) => {
+      this.newArray[xcoord][ycoord] = "hooverPresent";
     }
   
   };
