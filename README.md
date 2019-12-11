@@ -1,4 +1,4 @@
-# robotic-hoover
+# Robotic-hoover
 
 A program that navigates an imaginary robotic hoover (much like a Roomba)
 through an equally imaginary room.
