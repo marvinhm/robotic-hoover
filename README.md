@@ -22,7 +22,7 @@ through an equally imaginary room.
 node app.js
 ```
 
-Then run the following commands in the console:
+Then run the 3 following commands in your browser console:
 
 - Start with setting an instance of the RoboHoover class.
 ```
@@ -34,7 +34,7 @@ let roboSession = new RoboHoover();
 roboSession.getInput();
 ```
 
-- Run this step run the hoove session and get results.
+- Run this step to start hooving and get your results.
 ```
 roboSession.hoove();
 ```
