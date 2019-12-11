@@ -7,8 +7,7 @@ through an equally imaginary room.
 
 ## Technologies
 
-* [JS]
-* [nodeJS]
+* [JS/nodeJS]
 * [Express] - For serving the input file
 * [Jest] - For unit testing purposes.
 * [Common-js] - For module behavior on Web browsers
