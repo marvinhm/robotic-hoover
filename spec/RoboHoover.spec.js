@@ -5,16 +5,6 @@ describe("RoboHoover", () => {
   beforeEach(() => {
     hooverSession = new RobotHoover();
   });
-  describe("hoove", () => {
-    it("hoove returns string", () => {
-
-      let testInput = [[5,5], [1,2], [1,0], [2,2], [2,3], ["NNESEESWNWW"]];
-      const mockCallback = jest.fn(x => testInput);
-        hooverSession.getInput([0, 1], mockCallback);
-
-      expect(hooverSession.hoove()).toBeInstanceOf(Array);
-    });
-  });
 
   describe("gridBuilder", () => {
     it("given the dimensions provided, returns array to represent it ie. (0,0) => gives an array within an array", () => {

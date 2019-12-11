@@ -4,20 +4,20 @@
 (function(exports){
   function RoboHoover() {
     this.inputInfo;
-    this.newArray;
+    this.currentGrid;
     this.hooverOriginCoords;
     this.pastCoords;
     this.futureCoords;
     this.currentCoords;
     this.hooverPresence = "hooverPresent";
     this.cleanCount = 0;
-    this.txt;
+    this.inputValues;
 
     this.showGrid = () => {
-      return this.newArray;
+      return this.currentGrid;
     }
     this.hoove = () => {
-      let input = this.txt;
+      let input = this.inputValues;
       let xDimension = input[0][0];
       let yDimension = input[0][1];
       let initialXPosition = input[1][0];
@@ -52,33 +52,33 @@
           });
         });
       });
-      this.txt = inputArray;
+      this.inputValues = inputArray;
       return inputArray;
     }
   
     this.gridBuilder = (xcoord, ycoord) => {
-      this.newArray = [];
+      this.currentGrid = [];
       let yArray = [];
       for(let i = 0; i <= xcoord; i++) {
         for(let j = 0; j <= ycoord; j++) {
           yArray.push(false);
         }
-        this.newArray.push(yArray);
+        this.currentGrid.push(yArray);
         yArray = [];
       };
 
-      return this.newArray;
+      return this.currentGrid;
     }
 
     this.dirtPlotter = (dirtArray) => {
-      this.newArray;
+      this.currentGrid;
       dirtArray.forEach((coords) => {
-        this.newArray[coords[0]][coords[1]] = true;
+        this.currentGrid[coords[0]][coords[1]] = true;
       })
     };
 
     this.hooverOrigin = (xcoord, ycoord) => {
-      this.newArray[xcoord][ycoord] = this.hooverPresence;
+      this.currentGrid[xcoord][ycoord] = this.hooverPresence;
       this.hooverOriginCoords = [xcoord, ycoord];
       this.currentCoords = this.hooverOriginCoords;
       return this.hooverOriginCoords;
@@ -107,12 +107,12 @@
     this.drive = (directions) => {
       directions.split('').forEach((direction) => {
         this.compass(direction, this.currentCoords);
-        this.newArray[this.pastCoords[0]][this.pastCoords[1]] = false;
-        if(this.newArray[this.futureCoords[0]][this.futureCoords[1]] == true) {
+        this.currentGrid[this.pastCoords[0]][this.pastCoords[1]] = false;
+        if(this.currentGrid[this.futureCoords[0]][this.futureCoords[1]] == true) {
           this.cleanCount = this.cleanCount + 1;
           
         }
-        this.newArray[this.futureCoords[0]][this.futureCoords[1]] = this.hooverPresence;
+        this.currentGrid[this.futureCoords[0]][this.futureCoords[1]] = this.hooverPresence;
       });
     };
   
@@ -120,11 +120,3 @@
 
   exports.RoboHoover = RoboHoover;
 })(this);
-
-
-
-
-let Robo = require('./RoboHoover').RoboHoover;
-let r1 = new Robo();
-
-r1.getInput();
