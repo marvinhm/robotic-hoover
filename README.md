@@ -17,8 +17,10 @@ through an equally imaginary room.
 
 
 ## Get Started
-- Start by running the server
+- Start by cloning project then running the server.
 ```
+git clone git@github.com:marvinhm/robotic-hoover.git
+
 node app.js
 ```
 
