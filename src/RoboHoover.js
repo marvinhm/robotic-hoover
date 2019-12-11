@@ -1,5 +1,8 @@
+// if running tests please uncomment the following line
+// const fetch = require('node-fetch');
+
 (function(exports){
-  function RoboHoover(input) {
+  function RoboHoover() {
     this.inputInfo;
     this.newArray;
     this.hooverOriginCoords;
@@ -8,17 +11,20 @@
     this.currentCoords;
     this.hooverPresence = "hooverPresent";
     this.cleanCount = 0;
+    this.txt;
 
     this.showGrid = () => {
       return this.newArray;
     }
-    this.hoove = (input) => {
-      let xDimension  = input[0][0];
-      let yDimension  = input[0][1];
-      let initialXPosition  = input[1][0];
-      let initialYPosition  = input[1][1];
+    this.hoove = () => {
+      let input = this.txt;
+      let xDimension = input[0][0];
+      let yDimension = input[0][1];
+      let initialXPosition = input[1][0];
+      let initialYPosition = input[1][1];
       let dirtPatchArray = [];
       let drivingInstuctions = input[(input.length-1)].join();
+      let result;
 
       for(let i=2; i<input.length-1; i++) {
         dirtPatchArray.push(input[i]);
@@ -28,15 +34,26 @@
       this.hooverOrigin(initialXPosition, initialYPosition);
       this.dirtPlotter(dirtPatchArray);
       this.drive(drivingInstuctions);
-      console.log(this.showGrid());
-      return [this.currentCoords, [this.cleanCount]];
+      result = this.currentCoords.join(',') + '\n' + this.cleanCount;
+      return result;
     }
-    this.getInput = () => {
-      let myData = fetch("../input.csv")
-      .then(data => {
-        data
+    this.getInput = async () => {
+      let targetUrl = 'http://localhost:5555/';
+      let inputArray = [];
+      await fetch(targetUrl).then(function(response) {
+        response.text().then(function(data) {
+          data.split("\n").forEach((item) => {
+
+            if(item.split(',').length == 2) {
+              inputArray.push([ parseInt(item.split(',')[0]), parseInt(item.split(',')[1])] );
+            } else {
+              inputArray.push(item.split(','));
+            }
+          });
+        });
       });
-      console.log(myData);
+      this.txt = inputArray;
+      return inputArray;
     }
   
     this.gridBuilder = (xcoord, ycoord) => {
@@ -103,3 +120,11 @@
 
   exports.RoboHoover = RoboHoover;
 })(this);
+
+
+
+
+let Robo = require('./RoboHoover').RoboHoover;
+let r1 = new Robo();
+
+r1.getInput();

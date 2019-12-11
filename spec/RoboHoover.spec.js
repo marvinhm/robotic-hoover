@@ -6,10 +6,13 @@ describe("RoboHoover", () => {
     hooverSession = new RobotHoover();
   });
   describe("hoove", () => {
-    it("hoove returns array if given an array", () => {
+    it("hoove returns string", () => {
 
       let testInput = [[5,5], [1,2], [1,0], [2,2], [2,3], ["NNESEESWNWW"]];
-      expect(hooverSession.hoove(testInput)).toEqual([[1,3], [1]]);
+      const mockCallback = jest.fn(x => testInput);
+        hooverSession.getInput([0, 1], mockCallback);
+
+      expect(hooverSession.hoove()).toBeInstanceOf(Array);
     });
   });
 
