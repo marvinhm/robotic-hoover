@@ -25,7 +25,11 @@ Program will output:
 * [Jest] - For unit testing purposes.
 * [Common-js] - For module behavior on Web browsers
 
-
+## Running Tests
+- After cloning the project and installing dependancies with npm (see Get Started for this), you can run the tests by typing this in the Command line/Terminal.
+```
+npm run unit
+```
 
 
 ## Get Started
