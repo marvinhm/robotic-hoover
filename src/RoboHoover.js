@@ -1,5 +1,4 @@
-// if running tests please uncomment the following line
-// const fetch = require('node-fetch');
+
 
 (function(exports){
   function RoboHoover() {
