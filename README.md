@@ -57,4 +57,17 @@ roboSession.getInput();
 - Run this step to start hooving and get your results.
 ```
 roboSession.hoove();
+
 ```
+
+## Result format
+- Coordinates of the hoover after last move.
+- Number count of dirt items picked up after all moves made.
+```
+e.g.
+
+3,4
+2
+
+```
+
